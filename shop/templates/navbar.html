@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-dark">
-  <a href="#" class="navbar-brand">
+  <a href="{% url 'home' %}" class="navbar-brand">
     <i class="material-icons text-danger material-icons md-48">local_convenience_store</i>
   </a>
   <button class="navbar-toggler bg-light" data-toggle="collapse" data-target= "#navbar">
@@ -10,11 +10,9 @@
       <li class="nav-item dropdown" ><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle"
          data-toggle = "dropdown"href="">Categorys</a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Catefory1</a>
-          <a class="dropdown-item" href="#">Catefory2</a>
-          <a class="dropdown-item" href="#">Catefory3</a>
-          <a class="dropdown-item" href="#">Catefory4</a>
-          <a class="dropdown-item" href="#">Catefory5</a>
+          {% for category in links %}
+          <a class="dropdown-item" href="{{category.get_url}}">{{category.name}}</a>
+          {% endfor %}
         </div>
       </li>
       <li class="nav-item"><a class="nav-link text-light text-uppercase font-weight-bold px-3"href="">Contacts</a></li>
