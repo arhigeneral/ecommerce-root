@@ -80,7 +80,9 @@
             <br>
             SKU: {{ cart_item.product.id }}
             <br>
-            Price: {{ cart_item.quantity }}
+            Price: ${{ cart_item.product.price }}
+            <br>
+            Quantity: {{cart_item.quantity}} x {{cart_item.product.price}}
           </td>
           <td>
             {{ cart_item.product.sub_total }}
@@ -88,13 +90,13 @@
           {% if  cart_item.product.stock > cart_item.quantity %}
           <td>
             <a href="{% url 'add_cart' cart_item.product.id %}"><i class="material-icons cart-icon">addchart</i></a>
-            <a href="#"><i class="material-icons cart-icon">remove_circle_outline</i></a>
-            <a href="#"><i class="material-icons cart-icon">delete_forever</i></a>
+            <a href="{% url 'cart_remove' cart_item.product.id %}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
+            <a href="{% url 'cart_remove_product' cart_item.product.id %}"><i class="material-icons cart-icon">delete_forever</i></a>
           </td>
         {% else %}
         <td>
-          <a href="#"><i class="material-icons cart-icon">remove_circle_outline</i></a>
-          <a href="#"><i class="material-icons cart-icon">delete_forever</i></a>
+          <a href="{% url 'cart_remove' cart_item.product.id %}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
+          <a href="{% url 'cart_remove_product' cart_item.product.id %}"><i class="material-icons cart-icon">delete_forever</i></a>
         </td>
         </tr>
         {% endif %}
