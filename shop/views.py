@@ -117,3 +117,7 @@ def loginView(request):
 def signoutView(request):
     logout(request)
     return redirect('login')
+
+def query(request):
+    usertext = request.GET['usertext']
+    return render(request, 'query.html', {'usertext':usertext})
