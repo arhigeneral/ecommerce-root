@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-  Slut
+  Games
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
   .product_title {
     font-size: 30px;
     text-transform: uppercase;
-    letter-spacing: 2em;
+    letter-spacing: .1em;
     padding-top: 15px;
     padding-bottom: 10px;
   }
@@ -23,25 +23,29 @@
   .product_desc {
     font-size: 16px;
     text-transform: uppercase;
-    letter-spacing: 2em;
+    letter-spacing: .1em;
   }
 </style>
  <div class="container py-5">
    <div class="row mt-3">
      <div class="col-10 mx-auto col-md-4">
-       <img  class="img-fluid" src="{% static 'images/slut3.png' %}" alt="">
+       <img  class="img-fluid" src="{{product.image.url}}" alt="">
      </div>
    </div>
  </div>
  <div class="col-10 mx-auto col-md-4">
    <div class="">
-     <h1 class="product_title">Boobs</h1>
+     <h1 class="product_title">{{product.name}}</h1>
      <h5 class="text-info font-italic mb-0">
-       $9.99
+       ${{product.price}}
      </h5>
-     <p class="product_desc">Slut description</p>
-     <p class="text-justify product_text">Good home for your dick bro!</p>
+     <p class="product_desc">Game description</p>
+     <p class="text-justify product_text">{{product.description}}</p>
+     {% if product.stock <= 0 %}
      <p class="text-justify product_text">Out of Stock</p>
+     {% else %}
+     <a href="{% url 'add_cart' product.id %}">Add To Cart</a>
+     {% endif %}
    </div>
  </div>
  <!-- <div class="col-9 mx-auto col-md-6 col-lg-3">
